@@ -66,4 +66,17 @@ public class Flight {
     public void setPlaces(Integer places) {
         this.places = places;
     }
+
+    @Override
+    public String toString() {
+        return "Flight{" +
+                "flightNum='" + flightNum + '\'' +
+                ", airplaneModel='" + airplaneModel + '\'' +
+                ", departureTime=" + departureTime +
+                ", departureFrom='" + departureFrom + '\'' +
+                ", whereArriving='" + whereArriving + '\'' +
+                ", flightTime=" + flightTime +
+                ", places=" + places +
+                '}';
+    }
 }

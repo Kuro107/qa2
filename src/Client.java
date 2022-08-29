@@ -49,4 +49,16 @@ public class Client {
     public void setCountry(String country) {
         this.country = country;
     }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", identify=" + identify +
+                ", passportSeries='" + passportSeries + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", gender='" + gender + '\'' +
+                ", country='" + country + '\'' +
+                '}';
+    }
 }

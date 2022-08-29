@@ -27,4 +27,13 @@ public class Airport {
     public void setCityCode(String cityCode) {
         this.cityCode = cityCode;
     }
+
+    @Override
+    public String toString() {
+        return "Airport{" +
+                "airportCode='" + airportCode + '\'' +
+                ", countryCode='" + countryCode + '\'' +
+                ", cityCode='" + cityCode + '\'' +
+                '}';
+    }
 }

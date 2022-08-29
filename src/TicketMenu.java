@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class TicketMenu {
     public static void start() {
         Connect connect = new Connect();
-        Tickets ticket = new Tickets();
+
         Scanner scanner = new Scanner(System.in);
         boolean exit=true;
         while (exit) {
@@ -19,11 +19,12 @@ public class TicketMenu {
             int ticketMenuItem = scanner.nextInt();
 
             if (ticketMenuItem == 1) {
+                Tickets ticket = new Tickets();
                 System.out.println("write client id");
                 ticket.setClientId(scanner.nextInt());
                 System.out.println("write flight code");
                 ticket.setFlightCode(scanner.next());
-                System.out.println("write when you take ticket");
+                System.out.println("write when you take ticket format YYYY-MM-DD HH:MM:SS");
                 ticket.setTicketTake(Timestamp.valueOf(scanner.next()+ " " + scanner.next()));
                 System.out.println("write your ticket number");
                 ticket.setTicketNum(scanner.nextInt());
@@ -34,13 +35,14 @@ public class TicketMenu {
                 connect.deleteTicket(scanner.next());
             }
             else if (ticketMenuItem == 3) {
+                Tickets ticket = new Tickets();
                 System.out.println("write ticket id");
                 ticket.setId(scanner.nextInt());
                 System.out.println("write client id");
                 ticket.setClientId(scanner.nextInt());
                 System.out.println("write flight code");
                 ticket.setFlightCode(scanner.next());
-                System.out.println("write when you take ticket");
+                System.out.println("write when you take ticket format YYYY-MM-DD HH:MM:SS");
                 ticket.setTicketTake(Timestamp.valueOf(scanner.next()+ " " + scanner.next()));
                 System.out.println("write your ticket number");
                 ticket.setTicketNum(scanner.nextInt());
@@ -48,10 +50,11 @@ public class TicketMenu {
                 connect.editTicket(ticket);
             }
             else if (ticketMenuItem == 4) {
+                System.out.println("write ticket id");
                 connect.searchTicket(scanner.next());
             }
             else if (ticketMenuItem == 5) {
-                connect.showTickets();
+                System.out.println(connect.showTickets());
             }
             else if (ticketMenuItem == 0) {
                 System.out.println(" exit");

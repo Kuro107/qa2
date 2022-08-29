@@ -9,7 +9,6 @@ public class Connect {
     private final String user = "postgres";
     private final String password = "1007";
 
-
     public Connection connection() {
         Connection conn = null;
         try {
@@ -22,7 +21,7 @@ public class Connect {
     }
 
     public void addAirport(Airport airport) {
-        String SQL = "INSERT INTO  airport (airport_code,country, city) " +
+        String SQL = "INSERT INTO  airport (airport_code,country_code, city) " +
                 "VALUES (?, ?, ?)";
         try (Connection connection = connection();
              PreparedStatement statement = connection.prepareStatement(SQL)) {
@@ -30,9 +29,9 @@ public class Connect {
             statement.setString(2, airport.getCountryCode());
             statement.setString(3, airport.getCityCode());
 
-            statement.execute();
+            statement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
     }
 
@@ -43,7 +42,7 @@ public class Connect {
             preparedStatement.setString(1, code);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
     }
 
@@ -61,7 +60,7 @@ public class Connect {
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException ();
         }
     }
 
@@ -76,10 +75,10 @@ public class Connect {
                 airport.setAirportCode(resultSet.getString("airport_code"));
                 airport.setCityCode(resultSet.getString("country_code"));
                 airport.setCityCode(resultSet.getString("city"));
-
+                preparedStatement.executeUpdate();
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
         return airport;
 
@@ -102,13 +101,14 @@ public class Connect {
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            throw new RuntimeException();
         }
         return airports;
     }
 
     public void addClient(Client client) {
-        String SQL = "INSERT INTO clients (identity ,passport_series, full_name, gender,country) " +
-                "VALUES (?, ?, ?,?, ?)";
+        String SQL = "INSERT INTO clients (identify ,passport_series, full_name, gender,country) " +
+                "VALUES (?, ?, ?, ?, ?)";
         try (Connection connection = connection();
              PreparedStatement statement = connection.prepareStatement(SQL)) {
             statement.setInt(1, client.getIdentify());
@@ -119,18 +119,18 @@ public class Connect {
 
             statement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
     }
 
-    public void deleteClient(String code) {
+    public void deleteClient(Integer code) {
         String SQL = "DELETE FROM clients where IDENTIFY = ?";
         try (Connection connection = connection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
-            preparedStatement.setString(1, code);
+            preparedStatement.setInt(1, code);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+          throw new RuntimeException();
         }
     }
 
@@ -168,7 +168,7 @@ public class Connect {
 
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
         return client;
     }
@@ -191,13 +191,14 @@ public class Connect {
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            throw new RuntimeException();
         }
         return clients;
     }
 
     public void addCountry(Country country) {
-        String SQL = "INSERT INTO \"airline\".country (country_code, name) " +
-                "VALUES (?, ?, ?,?, ?)";
+        String SQL = "INSERT INTO country (country_code, name) " +
+                "VALUES (?, ?)";
         try (Connection connection = connection();
              PreparedStatement statement = connection.prepareStatement(SQL)) {
             statement.setString(1, country.getCountryCode());
@@ -205,7 +206,7 @@ public class Connect {
 
             statement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
 
     }
@@ -217,7 +218,7 @@ public class Connect {
             preparedStatement.setString(1, code);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
     }
 
@@ -232,7 +233,7 @@ public class Connect {
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
     }
 
@@ -250,7 +251,7 @@ public class Connect {
 
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
         return country;
     }
@@ -264,12 +265,12 @@ public class Connect {
             while (resultSet.next()) {
                 Country country = new Country();
                 country.setCountryCode(resultSet.getString("country_code"));
-                country.setName(resultSet.getString("passport_series"));
-
+                country.setName(resultSet.getString("name"));
                 countries.add(country);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            throw new RuntimeException();
         }
         return countries;
     }
@@ -290,8 +291,10 @@ public class Connect {
             stmt.execute();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            throw new RuntimeException();
         }
     }
+
     public void deleteFlight(String code) {
         String SQL = "DELETE FROM flight where country_code = ?";
         try (Connection connection = connection();
@@ -299,7 +302,7 @@ public class Connect {
             preparedStatement.setString(1, code);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
     }
 
@@ -308,19 +311,18 @@ public class Connect {
                 "flight_time = ?, places = ? " +
                 "where flight_num = ?";
         try (Connection connection = connection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SQL))
-        {
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
             preparedStatement.setString(1, flight.getAirplaneModel());
             preparedStatement.setTimestamp(2, flight.getDepartureTime());
             preparedStatement.setString(3, flight.getDepartureFrom());
             preparedStatement.setString(4, flight.getWhereArriving());
-            preparedStatement.setTimestamp(5,flight.getFlightTime());
-            preparedStatement.setInt(6,flight.getPlaces());
-            preparedStatement.setString(7,flight.getFlightNum());
+            preparedStatement.setTimestamp(5, flight.getFlightTime());
+            preparedStatement.setInt(6, flight.getPlaces());
+            preparedStatement.setString(7, flight.getFlightNum());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
     }
 
@@ -342,7 +344,7 @@ public class Connect {
 
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
         return flight;
     }
@@ -366,24 +368,25 @@ public class Connect {
                 flights.add(flight);
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            throw new RuntimeException();
         }
         return flights;
 
     }
 
     public void addTicket(Tickets tickets) {
-        String SQL = "INSERT INTO tikets (client_id, flight_code , ticket_take, ticket_num )" +
-                "VALUES (?,?,?,?,?,?,?)";
+        String SQL = "INSERT INTO tickets (client_id, flight_code , ticket_take, ticket_num )" +
+                "VALUES (?,?,?,?)";
         try (Connection conn = connection();
              PreparedStatement stmt = conn.prepareStatement(SQL)) {
             stmt.setInt(1, tickets.getClientId());
             stmt.setString(2, tickets.getFlightCode());
             stmt.setTimestamp(3, tickets.getTicketTake());
             stmt.setInt(4, tickets.getTicketNum());
-
+            stmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            throw new RuntimeException();
         }
     }
 
@@ -394,7 +397,7 @@ public class Connect {
             preparedStatement.setString(1, code);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
     }
 
@@ -403,25 +406,23 @@ public class Connect {
         String SQL = "UPDATE tikets  set client_id = ?, flight_code = ?, ticket_take = ?, ticket_num = ?," +
                 "where id = ?";
         try (Connection connection = connection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SQL))
-        {
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
             preparedStatement.setInt(1, ticket.getClientId());
             preparedStatement.setString(2, ticket.getFlightCode());
-            preparedStatement.setTimestamp(3,ticket.getTicketTake());
+            preparedStatement.setTimestamp(3, ticket.getTicketTake());
             preparedStatement.setInt(4, ticket.getTicketNum());
-            preparedStatement.setInt(5,ticket.getId());
+            preparedStatement.setInt(5, ticket.getId());
 
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
     }
 
-    public Tickets searchTicket(String code)
-    {
+    public Tickets searchTicket(String code) {
         Tickets ticket = new Tickets();
-        String SQL = "SELECT * FROM flight where flight_num = ?";
+        String SQL = "SELECT * FROM ticket where id = ?";
         try (Connection connection = connection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
             preparedStatement.setString(1, code);
@@ -435,21 +436,21 @@ public class Connect {
 
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
         return ticket;
     }
 
     public List<Tickets> showTickets() {
         List<Tickets> tickets = new ArrayList<>();
-        String SQL = "select * from flight";
+        String SQL = "select * from tickets";
         try (Connection connection = connection();
              PreparedStatement statement = connection.prepareStatement(SQL);
              ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
                 Tickets ticket = new Tickets();
                 ticket.setId(resultSet.getInt("id"));
-                ticket.setTicketNum(resultSet.getInt("client_id"));
+                ticket.setClientId(resultSet.getInt("client_id"));
                 ticket.setFlightCode(resultSet.getString("flight_code"));
                 ticket.setTicketTake(resultSet.getTimestamp("ticket_take"));
                 ticket.setTicketNum(resultSet.getInt("ticket_num"));
@@ -458,9 +459,27 @@ public class Connect {
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            throw new RuntimeException();
         }
         return tickets;
+
+    }
+
+    public void changeCountry() {
+        String SQL = "UPDATE  airport.country_code set country_code = ?" +
+                "where airport_code = ?";
+        try (Connection connection = connection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+            preparedStatement.setString(1,"country_code");
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException();
+        }
     }
 }
+
+
+
 
 

@@ -26,9 +26,9 @@ public class FlightMenu {
                 flight.setAirplaneModel(scanner.next());
                 System.out.println("write departure time format YYYY-MM-DD HH:MM:SS");
                 flight.setDepartureTime(Timestamp.valueOf(scanner.next()+ " " +scanner.next()));
-                System.out.println("write countries code departure from");
+                System.out.println("write airport code departure from");
                 flight.setDepartureFrom(scanner.next());
-                System.out.println("write countries code where arriving ");
+                System.out.println("write airport code where arriving ");
                 flight.setWhereArriving(scanner.next());
                 System.out.println("write flight time format YYYY-MM-DD HH:MM:SS");
                 flight.setFlightTime(Timestamp.valueOf(scanner.next()+ " " +scanner.next()));
@@ -61,7 +61,7 @@ public class FlightMenu {
                 connect.searchFlight(scanner.next());
             }
             else if (flightMenuItem == 5) {
-                connect.showFlights();
+                System.out.println(connect.showFlights());
             }
             else if (flightMenuItem == 0) {
                 System.out.println("exit");

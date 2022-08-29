@@ -48,7 +48,10 @@ public class AirportMenu {
                 connect.searchAirport(scanner.next());
             }
             else if (airportMenuItem == 5) {
-                connect.showAirports();
+                System.out.println(connect.showAirports());
+            }
+            else if(airportMenuItem == 6){
+                connect.changeCountry();
             }
             else if (airportMenuItem == 0) {
                 System.out.println(" to exit");

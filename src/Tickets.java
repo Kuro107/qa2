@@ -44,4 +44,15 @@ public class Tickets {
     public void setTicketNum(Integer ticketNum) {
         this.ticketNum = ticketNum;
     }
+
+    @Override
+    public String toString() {
+        return "Tickets{" +
+                "id=" + id +
+                ", clientId=" + clientId +
+                ", flightCode='" + flightCode + '\'' +
+                ", ticketTake=" + ticketTake +
+                ", ticketNum=" + ticketNum +
+                '}';
+    }
 }

@@ -29,13 +29,13 @@ public class ClientMenu {
                 client.setFullName(scanner.nextLine());
                 System.out.println("write clients gender");
                 client.setGender(scanner.next());
-                System.out.println("write clients country");
+                System.out.println("write clients countries code");
                 client.setCountry(scanner.next());
                 connect.addClient(client);
             }
             else if (clientMenuItem == 2) {
                 System.out.println("write clients identify number");
-                connect.deleteClient(scanner.next());
+                connect.deleteClient(scanner.nextInt());
             }
             else if (clientMenuItem == 3) {
                 Client client = new Client();
@@ -57,14 +57,14 @@ public class ClientMenu {
                 connect.searchClient(scanner.nextInt());
             }
             else if (clientMenuItem == 5) {
-                connect.showClients();
+                System.out.println( connect.showClients());
             }
             else if (clientMenuItem == 0) {
-                System.out.println(" Выход из программы");
+                System.out.println(" exit");
                 exit = false;
             }
             else {
-                System.out.println(" Ошибка ! Введите цифру из меню ! ");
+                System.out.println(" Error write number ");
             }
         }
 
