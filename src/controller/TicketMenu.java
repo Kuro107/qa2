@@ -1,3 +1,7 @@
+package controller;
+
+import model.Tickets;
+
 import java.sql.Timestamp;
 import java.util.Scanner;
 
@@ -8,7 +12,7 @@ public class TicketMenu {
         Scanner scanner = new Scanner(System.in);
         boolean exit=true;
         while (exit) {
-            System.out.println("Tickets menu : ");
+            System.out.println("model.Tickets menu : ");
             System.out.println("( 1 ) add ticket ");
             System.out.println("( 2 ) delete ticket");
             System.out.println("( 3 ) edit ticket ");

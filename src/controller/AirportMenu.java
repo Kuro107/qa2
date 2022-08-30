@@ -1,3 +1,7 @@
+package controller;
+
+import model.Airport;
+
 import java.util.Scanner;
 
 public class AirportMenu {

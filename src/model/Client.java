@@ -1,3 +1,5 @@
+package model;
+
 public class Client {
     private Integer id;
     private Integer identify;

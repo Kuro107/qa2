@@ -1,4 +1,7 @@
-import java.util.Arrays;
+package controller;
+
+import model.Country;
+
 import java.util.Scanner;
 
 public class CountryMenu {
@@ -10,7 +13,7 @@ public class CountryMenu {
 
         while (exit) {
 
-            System.out.println("Country menu : ");
+            System.out.println("model.Country menu : ");
             System.out.println("( 1 ) add country ");
             System.out.println("( 2 ) delete country");
             System.out.println("( 3 ) edit country ");

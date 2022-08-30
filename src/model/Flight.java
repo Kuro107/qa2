@@ -1,3 +1,4 @@
+package model;
 
 import java.sql.Timestamp;
 
@@ -69,7 +70,7 @@ public class Flight {
 
     @Override
     public String toString() {
-        return "Flight \n" +
+        return "model.Flight \n" +
                 "flightNum = " + flightNum + "\n" +
                 "airplaneModel = " + airplaneModel + "\n" +
                 "departureTime = " + departureTime + "\n"+
