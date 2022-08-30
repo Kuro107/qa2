@@ -54,9 +54,6 @@ public class AirportMenu {
             else if (airportMenuItem == 5) {
                 System.out.println(connect.showAirports());
             }
-            else if(airportMenuItem == 6){
-                connect.changeCountry();
-            }
             else if (airportMenuItem == 0) {
                 System.out.println(" to exit");
                 exit = false;
