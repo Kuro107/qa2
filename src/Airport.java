@@ -30,10 +30,9 @@ public class Airport {
 
     @Override
     public String toString() {
-        return "Airport{" +
-                "airportCode='" + airportCode + '\'' +
-                ", countryCode='" + countryCode + '\'' +
-                ", cityCode='" + cityCode + '\'' +
-                '}';
+        return
+                "\nairportCode = " + airportCode + "\n" +
+                "countryCode = " + countryCode + "\n" +
+                "cityCode = " + cityCode ;
     }
 }

@@ -32,7 +32,7 @@ public class TicketMenu {
             }
             else if (ticketMenuItem == 2) {
                 System.out.println("write ticket number");
-                connect.deleteTicket(scanner.next());
+                connect.deleteTicket(scanner.nextInt());
             }
             else if (ticketMenuItem == 3) {
                 Tickets ticket = new Tickets();
@@ -51,7 +51,7 @@ public class TicketMenu {
             }
             else if (ticketMenuItem == 4) {
                 System.out.println("write ticket id");
-                connect.searchTicket(scanner.next());
+                System.out.println( connect.searchTicket(scanner.nextInt()));
             }
             else if (ticketMenuItem == 5) {
                 System.out.println(connect.showTickets());

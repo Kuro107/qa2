@@ -22,9 +22,7 @@ public class Country {
 
     @Override
     public String toString() {
-        return "Country{" +
-                "countryCode='" + countryCode + '\'' +
-                ", name='" + name + '\'' +
-                '}';
+        return "\ncountryCode = " + countryCode + "\n" +
+                "name = " + name ;
     }
 }

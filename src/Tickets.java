@@ -47,12 +47,11 @@ public class Tickets {
 
     @Override
     public String toString() {
-        return "Tickets{" +
-                "id=" + id +
-                ", clientId=" + clientId +
-                ", flightCode='" + flightCode + '\'' +
-                ", ticketTake=" + ticketTake +
-                ", ticketNum=" + ticketNum +
-                '}';
+        return
+                "\nid = " + id + "\n" +
+                "clientId = " + clientId +"\n"+
+                "flightCode = " + flightCode + "\n" +
+                "ticketTake=" + ticketTake + "\n"+
+                "ticketNum = " + ticketNum;
     }
 }

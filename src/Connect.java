@@ -73,9 +73,9 @@ public class Connect {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 airport.setAirportCode(resultSet.getString("airport_code"));
-                airport.setCityCode(resultSet.getString("country_code"));
+                airport.setCountryCode(resultSet.getString("country_code"));
                 airport.setCityCode(resultSet.getString("city"));
-                preparedStatement.executeUpdate();
+
             }
         } catch (SQLException e) {
             throw new RuntimeException();
@@ -136,7 +136,7 @@ public class Connect {
 
     public void editClient(Client client) {
         String SQL = "UPDATE clients  set passport_series = ?, full_name = ?, gender = ?, country = ?" +
-                "where identity = ?";
+                "where identify = ?";
         try (Connection connection = connection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
             preparedStatement.setString(1, client.getPassportSeries());
@@ -148,7 +148,7 @@ public class Connect {
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
     }
 
@@ -160,6 +160,7 @@ public class Connect {
             preparedStatement.setInt(1, identify);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
+                client.setId(resultSet.getInt("id"));
                 client.setPassportSeries(resultSet.getString("passport_series"));
                 client.setFullName(resultSet.getString("full_name"));
                 client.setGender(resultSet.getString("gender"));
@@ -181,6 +182,7 @@ public class Connect {
              ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
                 Client client = new Client();
+                client.setId(resultSet.getInt("id"));
                 client.setIdentify(resultSet.getInt("identify"));
                 client.setPassportSeries(resultSet.getString("passport_series"));
                 client.setFullName(resultSet.getString("full_name"));
@@ -296,7 +298,7 @@ public class Connect {
     }
 
     public void deleteFlight(String code) {
-        String SQL = "DELETE FROM flight where country_code = ?";
+        String SQL = "DELETE FROM flight where flight_num = ?  ";
         try (Connection connection = connection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
             preparedStatement.setString(1, code);
@@ -335,7 +337,7 @@ public class Connect {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 flight.setFlightNum(resultSet.getString("flight_num"));
-                flight.setAirplaneModel(resultSet.getString("model"));
+                flight.setAirplaneModel(resultSet.getString("airplane_model"));
                 flight.setDepartureTime(resultSet.getTimestamp("departure_time"));
                 flight.setDepartureFrom((resultSet.getString("departure_from")));
                 flight.setWhereArriving(resultSet.getString("where_arriving"));
@@ -390,11 +392,11 @@ public class Connect {
         }
     }
 
-    public void deleteTicket(String code) {
-        String SQL = "DELETE FROM ticket where id = ?";
+    public void deleteTicket(Integer code) {
+        String SQL = "DELETE FROM tickets where ticket_num = ?";
         try (Connection connection = connection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
-            preparedStatement.setString(1, code);
+            preparedStatement.setInt(1, code);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException();
@@ -403,7 +405,7 @@ public class Connect {
 
 
     public void editTicket(Tickets ticket) {
-        String SQL = "UPDATE tikets  set client_id = ?, flight_code = ?, ticket_take = ?, ticket_num = ?," +
+        String SQL = "UPDATE tickets  set client_id = ?, flight_code = ?, ticket_take = ?, ticket_num = ?" +
                 "where id = ?";
         try (Connection connection = connection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
@@ -420,12 +422,12 @@ public class Connect {
         }
     }
 
-    public Tickets searchTicket(String code) {
+    public Tickets searchTicket(Integer code) {
         Tickets ticket = new Tickets();
-        String SQL = "SELECT * FROM ticket where id = ?";
+        String SQL = "SELECT * FROM tickets where id = ?";
         try (Connection connection = connection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
-            preparedStatement.setString(1, code);
+            preparedStatement.setInt(1, code);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 ticket.setId(resultSet.getInt("id"));

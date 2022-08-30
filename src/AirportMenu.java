@@ -45,7 +45,7 @@ public class AirportMenu {
             }
             else if (airportMenuItem == 4) {
                 System.out.println("write airport code");
-                connect.searchAirport(scanner.next());
+                System.out.println(connect.searchAirport(scanner.next()));
             }
             else if (airportMenuItem == 5) {
                 System.out.println(connect.showAirports());

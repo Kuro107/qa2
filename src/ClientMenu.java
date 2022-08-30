@@ -54,7 +54,7 @@ public class ClientMenu {
             }
             else if (clientMenuItem == 4) {
                 System.out.println("write identify num to search client");
-                connect.searchClient(scanner.nextInt());
+                System.out.println(connect.searchClient(scanner.nextInt()));
             }
             else if (clientMenuItem == 5) {
                 System.out.println( connect.showClients());

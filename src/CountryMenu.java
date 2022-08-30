@@ -42,7 +42,7 @@ public class CountryMenu {
             }
             else if (countryMenuItem == 4) {
                 System.out.println("write country code");
-                connect.searchCountry(scanner.next());
+                System.out.println( connect.searchCountry(scanner.next()));
             }
             else if (countryMenuItem == 5) {
                 System.out.println(connect.showCountries());

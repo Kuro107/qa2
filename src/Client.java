@@ -6,6 +6,10 @@ public class Client {
     private String gender;
     private String country;
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -52,13 +56,12 @@ public class Client {
 
     @Override
     public String toString() {
-        return "Client{" +
-                "id=" + id +
-                ", identify=" + identify +
-                ", passportSeries='" + passportSeries + '\'' +
-                ", fullName='" + fullName + '\'' +
-                ", gender='" + gender + '\'' +
-                ", country='" + country + '\'' +
-                '}';
+        return
+                "\nid = " + id +"\n"+
+                "identify = " + identify + "\n"+
+                "passportSeries = " + passportSeries + "\n" +
+                "fullName = " + fullName + "\n" +
+                "gender = " + gender + "\n" +
+                "country = " + country + "\n" +"_________________________";
     }
 }

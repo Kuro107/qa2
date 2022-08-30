@@ -69,14 +69,13 @@ public class Flight {
 
     @Override
     public String toString() {
-        return "Flight{" +
-                "flightNum='" + flightNum + '\'' +
-                ", airplaneModel='" + airplaneModel + '\'' +
-                ", departureTime=" + departureTime +
-                ", departureFrom='" + departureFrom + '\'' +
-                ", whereArriving='" + whereArriving + '\'' +
-                ", flightTime=" + flightTime +
-                ", places=" + places +
-                '}';
+        return "Flight \n" +
+                "flightNum = " + flightNum + "\n" +
+                "airplaneModel = " + airplaneModel + "\n" +
+                "departureTime = " + departureTime + "\n"+
+                "departureFrom = " + departureFrom +"\n" +
+                "whereArriving = " + whereArriving + "\n" +
+                "flightTime = " + flightTime + "\n"+
+                "places=" + places +"\n";
     }
 }
