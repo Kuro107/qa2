@@ -1,3 +1,7 @@
+package controller;
+
+import model.Client;
+
 import java.util.Scanner;
 
 public class ClientMenu {

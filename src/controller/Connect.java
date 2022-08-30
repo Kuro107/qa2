@@ -1,7 +1,10 @@
+package controller;
+
+import model.*;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Connect {
 
@@ -360,7 +363,7 @@ public class Connect {
             while (resultSet.next()) {
                 Flight flight = new Flight();
                 flight.setFlightNum(resultSet.getString("flight_num"));
-                flight.setAirplaneModel(resultSet.getString("model"));
+                flight.setAirplaneModel(resultSet.getString("airplane_model"));
                 flight.setDepartureTime(resultSet.getTimestamp("departure_time"));
                 flight.setDepartureFrom((resultSet.getString("departure_from")));
                 flight.setWhereArriving(resultSet.getString("where_arriving"));

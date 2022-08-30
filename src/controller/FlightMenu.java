@@ -1,3 +1,7 @@
+package controller;
+
+import model.Flight;
+
 import java.sql.Timestamp;
 import java.util.Scanner;
 
@@ -9,7 +13,7 @@ public class FlightMenu {
         Scanner scanner = new Scanner(System.in);
         boolean exit=true;
         while (exit) {
-            System.out.println("Flight menu : ");
+            System.out.println("model.Flight menu : ");
             System.out.println("( 1 ) add flight ");
             System.out.println("( 2 ) delete flight");
             System.out.println("( 3 ) edit flight ");

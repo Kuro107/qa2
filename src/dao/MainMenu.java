@@ -1,3 +1,7 @@
+package dao;
+
+import controller.*;
+
 import java.util.Scanner;
 
 public class MainMenu {
