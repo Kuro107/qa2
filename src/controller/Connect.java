@@ -469,19 +469,6 @@ public class Connect {
         return tickets;
 
     }
-
-    public void changeCountry() {
-        String SQL = "UPDATE  airport.country_code set country_code = ?" +
-                "where airport_code = ?";
-        try (Connection connection = connection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
-            preparedStatement.setString(1,"country_code");
-
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException();
-        }
-    }
 }
 
 
